@@ -1,1 +1,3 @@
 rootProject.name = "ExamenFinal"
+include("app-authors")
+include("app-books")

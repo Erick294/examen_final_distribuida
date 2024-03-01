@@ -12,7 +12,7 @@ import java.util.List;
 @ApplicationScoped
 @Transactional
 public class AuthorRepository implements IAuthorRepository{
-    @PersistenceContext(unitName = "pu1")
+    @PersistenceContext(unitName = "base")
     private EntityManager entityManager;
 
     @Override

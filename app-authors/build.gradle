@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    //id 'org.kordamp.gradle.jandex' version '1.0.0'
     id 'application'
     id 'io.freefair.lombok' version '8.4'
 }
@@ -22,38 +21,24 @@ tasks.withType(JavaCompile) {
 dependencies {
     implementation platform("io.helidon:helidon-dependencies:3.2.6")
 
-    implementation('io.helidon.microprofile.server:helidon-microprofile-server')
     implementation('io.helidon.microprofile.bundles:helidon-microprofile')
-    implementation('org.glassfish.jersey.media:jersey-media-json-binding')
-    implementation("io.helidon.microprofile.bundles:helidon-microprofile-core")
+    implementation ("io.helidon.microprofile.health:helidon-microprofile-health")
+    implementation("io.helidon.microprofile.server:helidon-microprofile-server")
+    implementation("io.helidon.microprofile.config:helidon-microprofile-config")
 
-    implementation('io.helidon.webclient:helidon-webclient') //WebClient
-    implementation('io.helidon.microprofile.openapi:helidon-microprofile-openapi') //OpenAPI
-    implementation("io.helidon.config:helidon-config") //Config
-    implementation("io.helidon.microprofile.server:helidon-microprofile-server") //Server
-    implementation("io.helidon.microprofile.cdi:helidon-microprofile-cdi") //CDI
-    implementation("io.helidon.jersey:helidon-jersey-client") //RestClient
-    implementation("io.helidon.health:helidon-health") //Health
+    implementation ("org.hibernate:hibernate-core:6.2.7.Final" )
+    implementation ("io.helidon.common:helidon-common")
 
-    //JPA Jakarta
-    implementation("jakarta.annotation:jakarta.annotation-api")
-    implementation("jakarta.enterprise:jakarta.enterprise.cdi-api")
-    implementation("jakarta.inject:jakarta.inject-api")
-    implementation("jakarta.ws.rs:jakarta.ws.rs-api")
-    implementation("jakarta.persistence:jakarta.persistence-api")
-    implementation("jakarta.transaction:jakarta.transaction-api")
+    implementation ("org.postgresql:postgresql")
 
-    implementation("io.helidon.integrations.cdi:helidon-integrations-cdi-jta-weld") //JTA
+    implementation 'org.eclipse.persistence:org.eclipse.persistence.jpa'
+    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-jpa'
 
-    implementation ("io.helidon.dbclient:helidon-dbclient-jdbc") // Driver JDBC: PostgreSQL
-    implementation("org.hibernate:hibernate-entitymanager:5.6.15.Final") //Hibernate
+    compileOnly("jakarta.enterprise:jakarta.enterprise.cdi-api")
 
-    //runtimeOnly('org.jboss:jandex')
-    runtimeOnly('jakarta.activation:jakarta.activation-api')
+    testImplementation ("io.helidon.microprofile.bundles:internal-test-libs:2.0.0-M3")
+    testImplementation ("io.helidon.microprofile.cdi:helidon-microprofile-cdi:3.2.2")
 
-    testImplementation('io.helidon.microprofile.tests:helidon-microprofile-tests-junit5')
-    testCompileOnly('org.junit.jupiter:junit-jupiter-api:')
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:')
 }
 
 application {
